@@ -34,10 +34,7 @@ import Foundation
 
 typealias DataTaskCompletionHandler = (Data?, URLResponse?, Error?) -> Void
 protocol URLSessionProtocol {
-  func dataTask(
-    with url: URL,
-    completionHandler: @escaping DataTaskCompletionHandler
-  ) -> URLSessionDataTask
+  func dataTask(with url: URL, completionHandler: @escaping DataTaskCompletionHandler) -> URLSessionDataTask
 }
 
 extension URLSession: URLSessionProtocol { }
@@ -53,14 +50,8 @@ class URLSessionStub: URLSessionProtocol {
     self.stubbedError = error
   }
 
-  public func dataTask(
-    with url: URL,
-    completionHandler: @escaping DataTaskCompletionHandler
-  ) -> URLSessionDataTask {
-    URLSessionDataTaskStub(
-      stubbedData: stubbedData,
-      stubbedResponse: stubbedResponse,
-      stubbedError: stubbedError,
+  public func dataTask( with url: URL, completionHandler: @escaping DataTaskCompletionHandler) -> URLSessionDataTask {
+    URLSessionDataTaskStub(stubbedData: stubbedData, stubbedResponse: stubbedResponse, stubbedError: stubbedError,
       completionHandler: completionHandler
     )
   }
